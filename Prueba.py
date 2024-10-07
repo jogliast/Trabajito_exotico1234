@@ -28,3 +28,10 @@ print("La distancia más corta es:", distancia)
 camino, distancia = grafo1.caminoMasCorto("Barranquilla", "Medellin")
 print("\nEl camino más corto de Barranquilla a Medellin es:", camino)
 print("La distancia más corta es:", distancia)
+
+# Imprimir el recorrido DFS desde 'Barranquilla'
+print("\nRecorrido en profundidad (DFS) desde Barranquilla:", grafo1.recorrerProfundidad("Barranquilla"))
+
+# Contar la suma de los pesos
+suma_pesos = grafo1.contarPesos()
+print("La suma de los pesos es:", suma_pesos)

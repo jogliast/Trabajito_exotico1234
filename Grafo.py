@@ -26,20 +26,25 @@ class GrafoListaConPesos:
     def __str__(self) -> str:
         return str(self.__lista_vertices)
     
+    #BUSCAR VERTICE 
     def __buscarVertice(self, dato_buscar):
         return self.__lista_vertices.get(dato_buscar)
     
+    #ADICIONAR VERTICE 
     def adicionarVertice(self, dato_nuevo_vertice):
         if self.__buscarVertice(dato_nuevo_vertice) is None:
             lista_adyacentes = set()
             self.__lista_vertices[dato_nuevo_vertice] = lista_adyacentes
     
+    #VER VERTICE 
     def verVertices(self):
         return list(self.__lista_vertices.keys())
     
+    #VER ADYACENTES 
     def verAdyacentes(self, dato_buscar):
         return list(self.__lista_vertices.get(dato_buscar))
 
+    #ADICIONAR ARCO 
     def adicionarArco(self, vertice_inicial, vertice_final, peso:int = 0):
         busqueda_inicial = self.__buscarVertice(vertice_inicial)
         busqueda_final = self.__buscarVertice(vertice_final)        
@@ -49,6 +54,7 @@ class GrafoListaConPesos:
         arco_nuevo = Arco(vertice_inicial, vertice_final, peso)
         busqueda_inicial.add(arco_nuevo)
     
+    #SI SON ADYACENTES
     def sonAdyacentes(self, vertice_inicial, vertice_final):
         busqueda_inicial = self.__buscarVertice(vertice_inicial)
         busqueda_final = self.__buscarVertice(vertice_final)
@@ -59,6 +65,7 @@ class GrafoListaConPesos:
                 return True
         return False   
     
+
     #RECORRIDO EN ANCHURA BFS
     def __bfs(self, list_recorrido:list, set_visitados:set, vertice_actual):
         list_recorrido.append(vertice_actual)
@@ -84,6 +91,8 @@ class GrafoListaConPesos:
                 recorrido, visitados = self.__bfs(recorrido, visitados, vertice)
         return recorrido
 
+
+    #CAMINO MAS CORTO 
     def caminoMasCorto(self, vertice_inicio, vertice_fin):
         distancias = {vertice: float('inf') for vertice in self.verVertices()}
         predecesores = {vertice: None for vertice in self.verVertices()}
@@ -110,3 +119,33 @@ class GrafoListaConPesos:
             vertice_actual = predecesores[vertice_actual]
 
         return camino, distancias[vertice_fin]
+    
+
+    #RECORRIDO POR PROFUNDIDAD 
+    def __dfs(self, vertice_actual, set_visitados, list_recorrido):
+        set_visitados.add(vertice_actual)
+        list_recorrido.append(vertice_actual)
+        adyacentes_actual = self.__buscarVertice(vertice_actual)
+        for arco_ady_actual in adyacentes_actual:
+            ady_actual = arco_ady_actual.vertice_final
+            if ady_actual not in set_visitados:
+                self.__dfs(ady_actual, set_visitados, list_recorrido)
+        return list_recorrido, set_visitados
+
+    def recorrerProfundidad(self, vertice_inicial):
+        if self.__buscarVertice(vertice_inicial) is None:
+            return None
+        recorrido, visitados = self.__dfs(vertice_inicial, set(), list())
+        for vertice in self.verVertices():
+            if vertice not in visitados:
+                recorrido, visitados = self.__dfs(vertice, visitados, recorrido)
+        return recorrido
+    
+    
+    #CONTAR PESOS 
+    def contarPesos(self):
+        total_pesos = 0
+        for vertice in self.__lista_vertices:
+            for arco in self.__lista_vertices[vertice]:
+                total_pesos += arco.peso
+        return total_pesos
