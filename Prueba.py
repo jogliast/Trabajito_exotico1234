@@ -35,3 +35,19 @@ print("\nRecorrido en profundidad (DFS) desde Barranquilla:", grafo1.recorrerPro
 # Contar la suma de los pesos
 suma_pesos = grafo1.contarPesos()
 print("La suma de los pesos es:", suma_pesos)
+
+# Imprimir el peso promedio
+print("Peso promedio de los arcos en el grafo:", grafo1.pesoPromedio())
+
+# Imprimir el arco con mayor peso
+arco_mayor = grafo1.arcoMayorPeso()
+print("Arco con mayor peso:", arco_mayor)
+
+# Imprimir el arco con menor peso
+arco_menor = grafo1.arcoMenorPeso()
+print("Arco con menor peso:", arco_menor)
+
+# Imprimir la suma de los pesos entre dos vértices
+suma_pesos = grafo1.sumaPesosEntreVertices("Barranquilla", "Medellin")
+print("Suma de los pesos entre los vértices Barranquilla y Medellin:", suma_pesos)
+

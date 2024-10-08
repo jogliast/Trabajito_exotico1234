@@ -66,7 +66,7 @@ class GrafoListaConPesos:
         return False   
     
 
-    #RECORRIDO EN ANCHURA BFS
+    #RECORRIDO EN ANCHURA (BFS)
     def __bfs(self, list_recorrido:list, set_visitados:set, vertice_actual):
         list_recorrido.append(vertice_actual)
         set_visitados.add(vertice_actual)
@@ -105,13 +105,6 @@ class GrafoListaConPesos:
                         distancias[arco.vertice_final] = distancias[vertice] + arco.peso
                         predecesores[arco.vertice_final] = vertice
 
-        # Verificar ciclos negativos
-        for vertice in self.verVertices():
-            for arco in self.__buscarVertice(vertice):
-                if distancias[vertice] != float('inf') and distancias[vertice] + arco.peso < distancias[arco.vertice_final]:
-                    print("El grafo contiene un ciclo negativo")
-                    return None
-
         camino = []
         vertice_actual = vertice_fin
         while vertice_actual is not None:
@@ -142,10 +135,61 @@ class GrafoListaConPesos:
         return recorrido
     
     
-    #CONTAR PESOS 
+    #SUMAR ARCOS 
     def contarPesos(self):
         total_pesos = 0
         for vertice in self.__lista_vertices:
             for arco in self.__lista_vertices[vertice]:
                 total_pesos += arco.peso
         return total_pesos
+
+    
+    #PROMEDIO DE PESOS 
+    def pesoPromedio(self):
+        total_pesos = 0
+        total_arcos = 0
+        for vertice in self.__lista_vertices:
+            for arco in self.__lista_vertices[vertice]:
+                total_pesos += arco.peso
+                total_arcos += 1
+        if total_arcos == 0:
+            return 0
+        return total_pesos / total_arcos
+
+
+
+    #ENCONTRAR MAYOR O MENOR ARCO 
+    def arcoMayorPeso(self):
+        arco_max = None
+        for vertice in self.__lista_vertices:
+            for arco in self.__lista_vertices[vertice]:
+                if arco_max is None or arco.peso > arco_max.peso:
+                    arco_max = arco
+        return arco_max
+    def arcoMenorPeso(self):
+        arco_min = None
+        for vertice in self.__lista_vertices:
+            for arco in self.__lista_vertices[vertice]:
+                if arco_min is None or arco.peso < arco_min.peso:
+                    arco_min = arco
+        return arco_min
+
+
+    #SUMAR ENTRE 2 VERTICES 
+    def sumaPesosEntreVertices(self, vertice_inicial, vertice_final):
+        peso_total = 0
+        adyacentes_inicial = self.__buscarVertice(vertice_inicial)
+        if adyacentes_inicial is None:
+            return None
+        for arco in adyacentes_inicial:
+            if arco.vertice_final == vertice_final:
+                peso_total += arco.peso
+        return peso_total
+
+
+
+
+    
+
+
+
