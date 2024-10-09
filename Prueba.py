@@ -4,50 +4,76 @@ from Grafo import GrafoListaConPesos
 grafo1 = GrafoListaConPesos()
 
 # Adicionar vértices
-grafo1.adicionarVertice("Barranquilla")
-grafo1.adicionarVertice("Bogota")
-grafo1.adicionarVertice("Medellin")
+grafo1.adicionarVertice("Buenavista")
+grafo1.adicionarVertice("Viva")
+grafo1.adicionarVertice("Universidad De La Costa")
+grafo1.adicionarVertice("Parque Alegra")
+grafo1.adicionarVertice("Portal Del Prado")
+grafo1.adicionarVertice("Villa Contri")
+grafo1.adicionarVertice("Unico")
+grafo1.adicionarVertice("Panorama")
+grafo1.adicionarVertice("Gran Centro")
+grafo1.adicionarVertice("Plaza Campestre")
+
 
 # Adicionar arcos
-grafo1.adicionarArco("Barranquilla", "Bogota", 20)
-grafo1.adicionarArco("Barranquilla", "Medellin", 240)
-grafo1.adicionarArco("Bogota", "Medellin", 80)
+grafo1.adicionarArco("Universidad De La Costa", "Buenavista", 3000)
+grafo1.adicionarArco("Universidad De La Costa", "Viva", 2800)
+grafo1.adicionarArco("Universidad De La Costa", "Parque Alegra", 4000)
+grafo1.adicionarArco("Buenavista", "Unico", 2500)
+grafo1.adicionarArco("Buenavista", "Gran Centro", 3000)
+grafo1.adicionarArco("Buenavista", "Villa Contri", 2000)
+grafo1.adicionarArco("Parque Alegra", "Portal Del Prado", 3500)
+grafo1.adicionarArco("Parque Alegra", "Panorama", 2800)
+grafo1.adicionarArco("Parque Alegra", "Plaza Campestre", 2200)
+grafo1.adicionarArco("Viva", "Plaza Campestre", 2000)
+grafo1.adicionarArco("Viva", "Portal Del Prado", 3000)
+grafo1.adicionarArco("Viva", "Unico", 2300)
+grafo1.adicionarArco("Portal Del Prado", "Villa Contri", 2000)
 
 # Imprimir el grafo
 print("El grafo es:\n", grafo1, sep="")
+print("_____________________________________________________________________________________")
 
-# Imprimir el recorrido BFS desde 'Barranquilla'
-print("Recorrido en anchura (BFS) desde Barranquilla:", grafo1.recorrerAnchura("Barranquilla"))
+# Imprimir el recorrido BFS 
+print("Recorrido en anchura (BFS) desde Parque Alegra:", grafo1.recorrerAnchura("Parque Alegra"))
+print("_____________________________________________________________________________________")
 
-# Calcular e imprimir el camino más corto desde 'Barranquilla' hasta 'Bogota'
-camino, distancia = grafo1.caminoMasCorto("Barranquilla", "Bogota")
-print("\nEl camino más corto de Barranquilla a Bogota es:", camino)
+# Calcular e imprimir el camino más corto 
+camino, distancia = grafo1.caminoMasCorto("Universidad De La Costa", "Plaza Campestre")
+print("\nEl camino más corto de Universidad De La Costa hasta Parque Campestre es:", camino)
 print("La distancia más corta es:", distancia)
+print("_____________________________________________________________________________________")
 
-# Calcular e imprimir el camino más corto desde 'Barranquilla' hasta 'Medellin'
-camino, distancia = grafo1.caminoMasCorto("Barranquilla", "Medellin")
-print("\nEl camino más corto de Barranquilla a Medellin es:", camino)
-print("La distancia más corta es:", distancia)
-
-# Imprimir el recorrido DFS desde 'Barranquilla'
-print("\nRecorrido en profundidad (DFS) desde Barranquilla:", grafo1.recorrerProfundidad("Barranquilla"))
+# Imprimir el recorrido DFS desde
+print("\nRecorrido en profundidad (DFS) desde Universidad De La Costa:", grafo1.recorrerProfundidad("Universidad De La Costa"))
+print("_____________________________________________________________________________________")
 
 # Contar la suma de los pesos
 suma_pesos = grafo1.contarPesos()
 print("La suma de los pesos es:", suma_pesos)
+print("_____________________________________________________________________________________")
 
 # Imprimir el peso promedio
 print("Peso promedio de los arcos en el grafo:", grafo1.pesoPromedio())
+print("_____________________________________________________________________________________")
 
 # Imprimir el arco con mayor peso
 arco_mayor = grafo1.arcoMayorPeso()
 print("Arco con mayor peso:", arco_mayor)
+print("_____________________________________________________________________________________")
 
 # Imprimir el arco con menor peso
 arco_menor = grafo1.arcoMenorPeso()
 print("Arco con menor peso:", arco_menor)
+print("_____________________________________________________________________________________")
 
 # Imprimir la suma de los pesos entre dos vértices
-suma_pesos = grafo1.sumaPesosEntreVertices("Barranquilla", "Medellin")
-print("Suma de los pesos entre los vértices Barranquilla y Medellin:", suma_pesos)
+suma_pesos = grafo1.sumaPesosEntreVertices("Parque Alegra", "Panorama")
+print("Suma de los pesos entre los vértices Universidad De La Costa hasta el Panorama:", suma_pesos)
+print("_____________________________________________________________________________________")
 
+#Imprimir la obtencion del peso del arco 
+peso = grafo1.obtenerPesoArco("Buenavista", "Gran Centro")
+print("\nPeso del arco entre Buenavista Gran Centro:", peso)
+print("_____________________________________________________________________________________")

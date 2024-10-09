@@ -187,9 +187,12 @@ class GrafoListaConPesos:
         return peso_total
 
 
-
-
-    
-
-
-
+    # OBTENER PESO DE UN ARCO
+    def obtenerPesoArco(self, vertice_inicial, vertice_final):
+        busqueda_inicial = self.__buscarVertice(vertice_inicial)
+        if busqueda_inicial is None:
+            return None
+        for arco in busqueda_inicial:
+            if arco.vertice_final == vertice_final:
+                return arco.peso
+        return None
