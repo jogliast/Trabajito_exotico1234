@@ -157,7 +157,6 @@ class GrafoListaConPesos:
         return total_pesos / total_arcos
 
 
-
     #ENCONTRAR MAYOR O MENOR ARCO 
     def arcoMayorPeso(self):
         arco_max = None
@@ -175,18 +174,6 @@ class GrafoListaConPesos:
         return arco_min
 
 
-    #SUMAR ENTRE 2 VERTICES 
-    def sumaPesosEntreVertices(self, vertice_inicial, vertice_final):
-        peso_total = 0
-        adyacentes_inicial = self.__buscarVertice(vertice_inicial)
-        if adyacentes_inicial is None:
-            return None
-        for arco in adyacentes_inicial:
-            if arco.vertice_final == vertice_final:
-                peso_total += arco.peso
-        return peso_total
-
-
     # OBTENER PESO DE UN ARCO
     def obtenerPesoArco(self, vertice_inicial, vertice_final):
         busqueda_inicial = self.__buscarVertice(vertice_inicial)
@@ -196,3 +183,14 @@ class GrafoListaConPesos:
             if arco.vertice_final == vertice_final:
                 return arco.peso
         return None
+
+
+    # SABER SI EL PESO ES PAR O IMPAR
+    def esArcoParOImpar(self, vertice_inicial, vertice_final):
+        peso_arco = self.obtenerPesoArco(vertice_inicial, vertice_final)
+        if peso_arco is None:
+            return "El arco no existe."
+        if peso_arco % 2 == 0:
+            return "El peso del arco es par."
+        else:
+            return "El peso del arco es impar."

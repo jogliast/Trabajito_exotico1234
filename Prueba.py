@@ -68,12 +68,11 @@ arco_menor = grafo1.arcoMenorPeso()
 print("Arco con menor peso:", arco_menor)
 print("_____________________________________________________________________________________")
 
-# Imprimir la suma de los pesos entre dos vértices
-suma_pesos = grafo1.sumaPesosEntreVertices("Parque Alegra", "Panorama")
-print("Suma de los pesos entre los vértices Universidad De La Costa hasta el Panorama:", suma_pesos)
-print("_____________________________________________________________________________________")
-
 #Imprimir la obtencion del peso del arco 
 peso = grafo1.obtenerPesoArco("Buenavista", "Gran Centro")
 print("\nPeso del arco entre Buenavista Gran Centro:", peso)
+print("_____________________________________________________________________________________")
+
+resultado = grafo1.esArcoParOImpar('Buenavista', 'Villa Contri')
+print(resultado)
 print("_____________________________________________________________________________________")
